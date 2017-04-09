@@ -4,7 +4,11 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   //res.send('respond with a resource');
-	res.json({ message: 'hooray! welcome to our api!' }); 
+	res.json([
+		{id: 0001, fn: "Marc"},
+		{id: 0002, fn: "Nick"},
+		{id: 0003, fn: "Andy"}
+	]); 
 });
 
 module.exports = router;
