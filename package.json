@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start1": "node ./bin/www",
-    "start": "server.js"
+    "start": "node server.js"
   },
   "dependencies": {
 		"mongoose": "~3.6.13",
