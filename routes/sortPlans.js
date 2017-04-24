@@ -41,9 +41,8 @@ router.patch('/:id', urlencodedParser, function (req, res) {
 // 		.write()
 
 	sortPlans
-		.find({id: req.body.data.id})
-		.sortPlanName = 'new title'
-		.write()
+		.updateById(req.body.data.id, req.body.data)
+		.value()
 
 
 
