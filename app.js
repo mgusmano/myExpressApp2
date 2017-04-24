@@ -23,6 +23,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/notes', function(req, res) {
+	res.json({notes: "This is your notebook. Edit this to start saving your notes!"})
+})
+
 app.use('/', index);
 app.use('/users', users);
 app.use('/sortPlans', sortPlans);
