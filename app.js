@@ -29,7 +29,28 @@ app.get('/notes', function(req, res) {
 
 app.get('/', index);
 app.get('/users', users);
-app.get('/users/:id', users);
+
+app.post('/users', function (req, res) {
+	res.json(
+		[
+			{
+				"success": true
+			}
+		]
+	);
+});
+
+app.get('/users/:id', function (req, res) {
+	res.json(
+		[
+			{
+				"success": true
+			}
+		]
+	);
+});
+
+
 app.get('/sortPlans', sortPlans);
 
 // catch 404 and forward to error handler
