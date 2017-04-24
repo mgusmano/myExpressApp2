@@ -1,4 +1,5 @@
 var express = require('express')
+var bodyParser = require('body-parser')
 var low = require('lowdb')
 //var _ = require('lodash')
 const uuid = require('uuid')
@@ -6,6 +7,14 @@ require('lodash-id')
 var router = express.Router()
 const db = low('db2.json')
 const sortPlans = db.get('sortPlans')
+
+// create application/json parser 
+var jsonParser = bodyParser.json()
+ 
+// create application/x-www-form-urlencoded parser 
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
+
 
 router.get('/', function(req, res, next) {
 //	const db = low('db2.json')
@@ -16,8 +25,10 @@ router.get('/', function(req, res, next) {
 	res.send(sortPlans)
 })
 
-router.patch('/:id', function (req, res) {
+router.patch('/:id', urlencodedParser, function (req, res) {
 	console.log('****** patch sortPlan')
+	console.log('****** req.params.id')
+	console.log(req.params.id)
 	console.log(req)
 	console.log('****** patch sortPlan body')
 	console.log(req.body)
@@ -25,7 +36,7 @@ router.patch('/:id', function (req, res) {
 	res.send({success: true})
 })
 
-router.put('/:id', function (req, res) {
+router.put('/:id', urlencodedParser, function (req, res) {
 	console.log('****** put sortPlan')
 	console.log(req)
 	console.log('****** put sortPlan body')
