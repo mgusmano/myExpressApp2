@@ -40,9 +40,11 @@ router.patch('/:id', urlencodedParser, function (req, res) {
 // //		.value()
 // 		.write()
 
+	console.log('****** before')
 	sortPlans
-		.updateById(req.body.data.id, req.body.data)
+		.updateById(req.params.id, req.body.data)
 		.value()
+	console.log('****** after')
 
 
 
