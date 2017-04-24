@@ -27,9 +27,9 @@ app.get('/notes', function(req, res) {
 	res.json({notes: "This is your notebook. Edit this to start saving your notes!"})
 })
 
-app.use('/', index);
-app.use('/users', users);
-app.use('/sortPlans', sortPlans);
+app.get('/', index);
+app.get('/users', users);
+app.get('/sortPlans', sortPlans);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
