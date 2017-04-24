@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
   const post = db.get('sortPlans')
     .value()
 
-  res.json(post)
+  res.send(post)
 
 
 
