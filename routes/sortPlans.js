@@ -15,8 +15,22 @@ router.get('/', function(req, res, next) {
 	);
 })
 
+router.put('/', function (req, res) {
+	res.send('put sortPlan')
+})
+
+router.delete('/', function (req, res) {
+	res.send('delete sortPlan')
+})
+
+router.patch('/', function (req, res) {
+	res.send('patch sortPlan')
+})
+
 router.get('/about', function (req, res) {
 	res.send('About sortPlan')
 })
+
+
 
 module.exports = router
