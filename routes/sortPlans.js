@@ -9,6 +9,8 @@ var router = express.Router()
 
 router.get('/', function(req, res, next) {
 	const db = low('db2.json')
+db.defaults({ sortPlans: [] })
+  .write()	
   const post = db.get('sortPlans')
     .value()
 
@@ -36,6 +38,9 @@ router.post('/', function (req, res) {
 console.log('in post')
 
 	const db = low('db2.json')
+db.defaults({ sortPlans: [] })
+  .write()
+
 //	db._.mixin(require('lodash-id'))
 
 	console.log(db.sortPlans)
@@ -64,7 +69,6 @@ db.get('sortPlans')
 	)
 	.write()
 
-console.log(p)
 // Set a user
 // db.set('user.name', 'typicode')
 //   .write()
