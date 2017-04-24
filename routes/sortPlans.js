@@ -32,7 +32,15 @@ router.patch('/:id', urlencodedParser, function (req, res) {
 	console.log(req.params.id)
 	console.log(req)
 	console.log('****** patch sortPlan body')
-	console.log(req.body)
+	console.log(req.body.data)
+
+	sortPlans
+		.patch(req.body.data)
+		.write()
+
+
+
+
 	//res.send('patch sortPlan')
 	res.send({success: true})
 })
@@ -41,7 +49,7 @@ router.put('/:id', urlencodedParser, function (req, res) {
 	console.log('****** put sortPlan')
 	console.log(req)
 	console.log('****** put sortPlan body')
-	console.log(req.body)
+	console.log(req.body.data)
 	//res.send('patch sortPlan')
 	res.send({success: true})
 })
