@@ -73,14 +73,6 @@ sortPlans
 
 })
 
-router.put('/', function (req, res) {
-	res.send('put sortPlan')
-})
-
-router.patch('/', function (req, res) {
-	res.send('patch sortPlan')
-})
-
 router.delete('/', function (req, res) {
 	res.send('delete sortPlan')
 })
