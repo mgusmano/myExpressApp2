@@ -1,8 +1,7 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
 
 router.get('/', function(req, res, next) {
-  //res.send('respond with a resource');
 	res.json(
 		[
 			{
@@ -13,7 +12,11 @@ router.get('/', function(req, res, next) {
 				"id": 2
 			}
 		]
-	); 
-});
+	);
+})
 
-module.exports = router;
+router.get('/about', function (req, res) {
+	res.send('About sortPlan')
+})
+
+module.exports = router
