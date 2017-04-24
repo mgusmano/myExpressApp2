@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   //res.send('respond with a resource');
 	res.json([
-		{id: 0001, fn: "Marc3"},
+		{id: 0001, fn: "Marc9"},
 		{id: 0002, fn: "Nick3"},
 		{id: 0003, fn: "Andy"}
 	]); 
