@@ -35,8 +35,10 @@ router.patch('/:id', urlencodedParser, function (req, res) {
 	console.log(req.body.data)
 
 	sortPlans
-		.push(req.body.data)
-		.write()
+		.find({id: req.body.data.id})
+		.assign(req.body.data) // 
+		.value()
+//		.write()
 
 
 
