@@ -12,6 +12,7 @@ var users = require('./routes/users');
 
 var app = express();
 app.use(cors())
+console.write('cors')
 
 var sortPlans = require('./routes/sortPlans');
 app.use('/sortPlans', sortPlans);

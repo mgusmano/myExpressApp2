@@ -8,17 +8,26 @@ require('lodash-id')
 var router = express.Router()
 
 router.get('/', function(req, res, next) {
-	res.json(
-		[
-			{
-				"deleted": true,
-				"sortPlanName": "plan one",
-				"planDesc": "the plan one description",
-				"notes": "quick note",
-				"id": 2
-			}
-		]
-	);
+	const db = low('db2.json')
+  const post = db.get('sortPlans')
+    .value()
+
+  res.json(post)
+
+
+
+
+	// res.json(
+	// 	[
+	// 		{
+	// 			"deleted": true,
+	// 			"sortPlanName": "plan one",
+	// 			"planDesc": "the plan one description",
+	// 			"notes": "quick note",
+	// 			"id": 2
+	// 		}
+	// 	]
+	// );
 })
 
 router.post('/', function (req, res) {
