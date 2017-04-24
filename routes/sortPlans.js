@@ -34,11 +34,16 @@ router.patch('/:id', urlencodedParser, function (req, res) {
 	console.log('****** patch sortPlan body')
 	console.log(req.body.data)
 
+// 	sortPlans
+// 		.find({id: req.body.data.id})
+// 		.assign(req.body.data)
+// //		.value()
+// 		.write()
+
 	sortPlans
 		.find({id: req.body.data.id})
-		.assign(req.body.data)
-//		.value()
-		.write()
+		.sortPlanName = 'new title'
+	db.save()
 
 
 
