@@ -2,35 +2,24 @@ var express = require('express')
 var low = require('lowdb')
 //var _ = require('lodash')
 const uuid = require('uuid')
-
 require('lodash-id')
-
 var router = express.Router()
+const db = low('db2.json')
+const post = db.get('sortPlans')
 
 router.get('/', function(req, res, next) {
-	const db = low('db2.json')
-db.defaults({ sortPlans: [] })
-  .write()	
-  const post = db.get('sortPlans')
-    .value()
+//	const db = low('db2.json')
+//	db.defaults({ sortPlans: [] })
+//	.write()
+	post.value()
+	//console.log(post)
+	res.send(post)
+})
 
-console.log(post)
-  res.send(post)
-
-
-
-
-	// res.json(
-	// 	[
-	// 		{
-	// 			"deleted": true,
-	// 			"sortPlanName": "plan one",
-	// 			"planDesc": "the plan one description",
-	// 			"notes": "quick note",
-	// 			"id": 2
-	// 		}
-	// 	]
-	// );
+router.patch('/:id', function (req, res) {
+	console.log('patch sortPlan')
+	console.log(req)
+	res.send('patch sortPlan')
 })
 
 router.post('/', function (req, res) {
