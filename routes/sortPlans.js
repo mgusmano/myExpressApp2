@@ -17,6 +17,34 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function (req, res) {
 	res.send('post sortPlan')
+
+	const db = low('db.json')
+
+// Set some defaults if your JSON file is empty
+// db.defaults({ posts: [], user: {} })
+//   .write()
+
+// Add a post
+db.get('sortPlan')
+	.push(
+		{
+			"deleted": true,
+			"sortPlanName": "plan two",
+			"planDesc": "the plan one description",
+			"notes": "quick note"
+		}
+	)
+	.write()
+
+// Set a user
+// db.set('user.name', 'typicode')
+//   .write()
+
+
+
+
+
+
 })
 
 router.put('/', function (req, res) {
