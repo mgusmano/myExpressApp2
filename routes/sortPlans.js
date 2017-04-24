@@ -5,15 +5,15 @@ const uuid = require('uuid')
 require('lodash-id')
 var router = express.Router()
 const db = low('db2.json')
-const post = db.get('sortPlans')
+const sortPlans = db.get('sortPlans')
 
 router.get('/', function(req, res, next) {
 //	const db = low('db2.json')
 //	db.defaults({ sortPlans: [] })
 //	.write()
-	post.value()
+	sortPlans.value()
 	//console.log(post)
-	res.send(post)
+	res.send(sortPlans)
 })
 
 router.patch('/:id', function (req, res) {
@@ -23,16 +23,15 @@ router.patch('/:id', function (req, res) {
 })
 
 router.post('/', function (req, res) {
+//	console.log('in post')
 
-console.log('in post')
-
-	const db = low('db2.json')
-db.defaults({ sortPlans: [] })
-  .write()
+	// const db = low('db2.json')
+	//db.defaults({ sortPlans: [] })
+//  sortPlans.write()
 
 //	db._.mixin(require('lodash-id'))
 
-	console.log(db.sortPlans)
+//	console.log(db.sortPlans)
 
 // Set some defaults if your JSON file is empty
 // db.defaults({ posts: [], user: {} })
@@ -46,7 +45,7 @@ db.defaults({ sortPlans: [] })
 // })
 
 // // Add a post
-db.get('sortPlans')
+sortPlans
 	.push(
 		{
 			"id": uuid(),
@@ -58,15 +57,7 @@ db.get('sortPlans')
 	)
 	.write()
 
-// Set a user
-// db.set('user.name', 'typicode')
-//   .write()
-
-
-	res.send('post sortPlan')
-
-
-
+	res.send({success: true})
 
 })
 
