@@ -15,22 +15,24 @@ router.get('/', function(req, res, next) {
 	);
 })
 
-router.put('/', function (req, res) {
-	res.send('put sortPlan')
+router.post('/', function (req, res) {
+	res.send('post sortPlan')
 })
 
-router.delete('/', function (req, res) {
-	res.send('delete sortPlan')
+router.put('/', function (req, res) {
+	res.send('put sortPlan')
 })
 
 router.patch('/', function (req, res) {
 	res.send('patch sortPlan')
 })
 
+router.delete('/', function (req, res) {
+	res.send('delete sortPlan')
+})
+
 router.get('/about', function (req, res) {
 	res.send('About sortPlan')
 })
-
-
 
 module.exports = router
