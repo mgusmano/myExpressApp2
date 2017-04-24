@@ -1,4 +1,13 @@
 {
+	"sortPlans": [
+		{
+			"deleted": true,
+			"sortPlanName": "plan one",
+			"planDesc": "the plan one description",
+			"notes": "quick note",
+			"id": 2
+		}
+	],
 	"users" : [
 		{"id": "0001", "fn": "Marc4"},
 		{"id": "0002", "fn": "Nick4"},
