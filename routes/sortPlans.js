@@ -35,7 +35,7 @@ router.patch('/:id', urlencodedParser, function (req, res) {
 	console.log(req.body.data)
 
 	sortPlans
-		.patch(req.body.data)
+		.push(req.body.data)
 		.write()
 
 
