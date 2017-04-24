@@ -1,4 +1,10 @@
 var express = require('express')
+var low = require('lowdb')
+//var _ = require('lodash')
+const uuid = require('uuid')
+
+require('lodash-id')
+
 var router = express.Router()
 
 router.get('/', function(req, res, next) {
@@ -16,19 +22,31 @@ router.get('/', function(req, res, next) {
 })
 
 router.post('/', function (req, res) {
-	res.send('post sortPlan')
 
-	const db = low('db.json')
+console.log('in post')
+
+	const db = low('db2.json')
+//	db._.mixin(require('lodash-id'))
+
+	console.log(db.sortPlans)
 
 // Set some defaults if your JSON file is empty
 // db.defaults({ posts: [], user: {} })
 //   .write()
 
-// Add a post
-db.get('sortPlan')
+// const post = _.insert(db.sortPlans, { 
+// 		"deleted": true,
+// 		"sortPlanName": "plan two",
+// 		"planDesc": "the plan one description",
+// 		"notes": "quick note"
+// })
+
+// // Add a post
+db.get('sortPlans')
 	.push(
 		{
-			"deleted": true,
+			"id": uuid(),
+			"deleted": false,
 			"sortPlanName": "plan two",
 			"planDesc": "the plan one description",
 			"notes": "quick note"
@@ -36,11 +54,13 @@ db.get('sortPlan')
 	)
 	.write()
 
+console.log(p)
 // Set a user
 // db.set('user.name', 'typicode')
 //   .write()
 
 
+	res.send('post sortPlan')
 
 
 
