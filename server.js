@@ -1,13 +1,12 @@
 // server.js
 console.log('in server.js')
 
-
-
-//var router = require('./routes/index');
-
 var jsonServer = require('json-server')
 var server = jsonServer.create()
-var router = jsonServer.router('db.json')
+
+const path = require('path')
+const router = jsonServer.router(path.join(__dirname, 'db.json'))
+
 var middlewares = jsonServer.defaults()
 
 server.use(middlewares)
