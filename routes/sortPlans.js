@@ -17,9 +17,11 @@ router.get('/', function(req, res, next) {
 })
 
 router.patch('/:id', function (req, res) {
-	console.log('patch sortPlan')
-	console.log(req)
-	res.send('patch sortPlan')
+	console.log('****** patch sortPlan')
+	console.log(req.body)
+	//res.send('patch sortPlan')
+	res.send({success: true})
+
 })
 
 router.post('/', function (req, res) {
