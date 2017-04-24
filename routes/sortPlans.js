@@ -3,7 +3,7 @@ var bodyParser = require('body-parser')
 var low = require('lowdb')
 //var _ = require('lodash')
 const uuid = require('uuid')
-require('lodash-id')
+var _ = require('lodash-id')
 var router = express.Router()
 const db = low('db2.json')
 const sortPlans = db.get('sortPlans')
@@ -40,11 +40,18 @@ router.patch('/:id', urlencodedParser, function (req, res) {
 // //		.value()
 // 		.write()
 
+
+
 	console.log('****** before')
-	sortPlans
-		.updateById(req.params.id, req.body.data)
-		.value()
+	const sortPlan = _.updateById(sortPlans, req.params.id, req.body.data)
 	console.log('****** after')
+	console.log('****** after')
+
+
+	// sortPlans
+	// 	.updateById(req.params.id, req.body.data)
+	// 	.value()
+	// console.log('****** after')
 
 
 
