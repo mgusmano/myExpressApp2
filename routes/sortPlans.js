@@ -23,7 +23,6 @@ router.patch('/:id', function (req, res) {
 	console.log(req.body)
 	//res.send('patch sortPlan')
 	res.send({success: true})
-
 })
 
 router.put('/:id', function (req, res) {
@@ -33,7 +32,6 @@ router.put('/:id', function (req, res) {
 	console.log(req.body)
 	//res.send('patch sortPlan')
 	res.send({success: true})
-
 })
 
 router.post('/', function (req, res) {
