@@ -18,6 +18,18 @@ router.get('/', function(req, res, next) {
 
 router.patch('/:id', function (req, res) {
 	console.log('****** patch sortPlan')
+	console.log(req)
+	console.log('****** patch sortPlan body')
+	console.log(req.body)
+	//res.send('patch sortPlan')
+	res.send({success: true})
+
+})
+
+router.put('/:id', function (req, res) {
+	console.log('****** put sortPlan')
+	console.log(req)
+	console.log('****** put sortPlan body')
 	console.log(req.body)
 	//res.send('patch sortPlan')
 	res.send({success: true})
