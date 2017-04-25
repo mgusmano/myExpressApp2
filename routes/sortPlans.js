@@ -4,6 +4,7 @@ var low = require('lowdb')
 //var _ = require('lodash')
 const uuid = require('uuid')
 var _ = require('lodash-id')
+//var _ = require('lodash')
 var router = express.Router()
 const db = low('db2.json')
 const sortPlans = db.get('sortPlans')
@@ -42,16 +43,30 @@ router.patch('/:id', urlencodedParser, function (req, res) {
 
 
 
-	console.log('****** before')
-	const sortPlan = _.updateById(sortPlans, req.params.id, req.body.data)
-	console.log('****** after')
-	console.log('****** after')
-
-
-	// sortPlans
-	// 	.updateById(req.params.id, req.body.data)
-	// 	.value()
+	 console.log('****** before')
+	// const sortPlan = _.updateById(sortPlans, req.params.id, req.body.data)
 	// console.log('****** after')
+	// console.log('****** after')
+
+	// try {
+	// 	_.upsert(db.sortPlans, { id: req.params.id, sortPlanName: 'ch' })
+	// } catch (err) {
+	// 	console.log(err)
+	// }
+
+	_.upsert(db.get('sortPlans').id, { id: req.params.id, sortPlanName: 'ch' })
+
+		// var s = sortPlans
+		// .find({ id: req.params.id })
+		// .value()
+
+		// console.log(s)
+
+
+		// sortPlans.updateById(req.params.id, req.body.data)
+		// sortPlans.value()
+		// sortPlans.write()
+		// console.log('****** after')
 
 
 
