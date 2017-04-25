@@ -3,6 +3,7 @@
 /**
  * Module dependencies.
  */
+console.log('in server')
 
 var app = require('../app');
 var debug = require('debug')('myexpressapp:server');
