@@ -1,9 +1,9 @@
-//bookModel
-//bookCollection
-//bookInstance
-//bookId
+//userModel
+//userCollection
+//userInstance
+//userId
 var express = require('express');
-var bookModel = require('./bookModel')
+var userModel = require('./userModel')
 var router = express.Router()
 router.route('/')
 	.get(function(req,res) {
@@ -11,46 +11,46 @@ router.route('/')
 		if (req.query.deleted) {
 			query.deleted = req.query.deleted
 		}
-		bookModel.find(query, function(err,bookCollection) {
+		userModel.find(query, function(err,userCollection) {
 			if(err) { res.status(500).send(err) }
 			else {
-				res.json(bookCollection) 
+				res.json(userCollection) 
 			}
 		})
 	})
 	.post(function(req,res) {
-		var bookInstance = new bookModel(req.body)
-		bookInstance.save()
-		res.status(201).send(bookInstance)
+		var userInstance = new userModel(req.body)
+		userInstance.save()
+		res.status(201).send(userInstance)
 	})
 
-router.use('/:bookId', function(req, res, next) {
-		bookModel.findById(req.params.bookId, function(err,bookInstance) {
+router.use('/:userId', function(req, res, next) {
+		userModel.findById(req.params.userId, function(err,userInstance) {
 			if(err) { res.status(500).send(err) }
-			else if (bookInstance) {
-				req.bookInstance = bookInstance
+			else if (userInstance) {
+				req.userInstance = userInstance
 				next() 
 			}
 			else {
-				res.status(404).send('no book found')
+				res.status(404).send('no user found')
 			}
 		})
 })
 
-router.route('/:bookId')
+router.route('/:userId')
 	.get(function(req,res) {
-		res.json(req.bookInstance) 
+		res.json(req.userInstance) 
 	})
 	.put(function(req,res) {
 		if (req.body._id) {
 			delete req.body._id
 		}
 		for (var p in req.body) {
-			req.book[p] = req.body[p]
+			req.user[p] = req.body[p]
 		}
-		req.book.save(function(err) {
+		req.user.save(function(err) {
 			if (err) {res.status(500).send(err)}
-			else {res.json(req.book)}
+			else {res.json(req.user)}
 		})
 	})
 	.patch(function(req,res) {
@@ -58,15 +58,15 @@ router.route('/:bookId')
 			delete req.body._id
 		}
 		for (var p in req.body) {
-			req.bookInstance[p] = req.body[p]
+			req.userInstance[p] = req.body[p]
 		}
-		req.bookInstance.save(function(err) {
+		req.userInstance.save(function(err) {
 			if (err) {res.status(500).send(err)}
-			else {res.json(req.bookInstance)}
+			else {res.json(req.userInstance)}
 		})
 	})
 	.delete(function(req,res) {
-		req.bookInstance.remove(function(err) {
+		req.userInstance.remove(function(err) {
 			if (err) {res.status(500).send(err)}
 			else {res.status(204).send('removed')}
 		})
