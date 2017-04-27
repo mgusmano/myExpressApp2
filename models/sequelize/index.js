@@ -6,7 +6,7 @@ var Sequelize = require("sequelize");
 var env = process.env.NODE_ENV || "development";
 var config = require(path.join(__dirname, '../', '../', 'config.json')).database;
 var sequelize = new Sequelize(config.database, config.username, config.password, config);
-console.log(config.dialect)
+console.log('using ' + config.dialect)
 var db = {};
 
 fs.readdirSync(__dirname)

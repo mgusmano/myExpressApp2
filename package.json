@@ -1,9 +1,6 @@
 {
 	"name": "myexpressapp",
 	"version": "0.0.1",
-	"engines": {
-		"node": "7.5.0"
-	},
 	"main": "./bin/www",
 	"module": "./bin/www",
 	"private": true,
