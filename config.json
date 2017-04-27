@@ -3,6 +3,11 @@
 		"dialect": "sqlite",
 		"storage": ".//sqlite.db",
 		"logging": false,
+		"dialectOptions": {
+			"socketPath": "/tmp/mysql.sock",
+			"supportBigNumbers": true,
+			"bigNumberStrings": true
+		},
 		"define": {
 			"timestamps": false,
 			"createdAt": "created",

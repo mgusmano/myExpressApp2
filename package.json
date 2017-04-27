@@ -1,11 +1,14 @@
 {
 	"name": "myexpressapp",
-	"version": "0.0.0",
+	"version": "0.0.1",
+	"engines": {
+		"node": "7.5.0"
+	},
+	"main": "./bin/www",
+	"module": "./bin/www",
 	"private": true,
 	"scripts": {
-		"start": "nodemon ./bin/www",
-		"start2": "node ./bin/www",
-		"start1": "node server.js"
+		"start": "nodemon ./bin/www"
 	},
 	"dependencies": {
 		"body-parser": "~1.17.1",
@@ -25,7 +28,7 @@
 		"sqlite3": "^3.1.8",
 		"sqlite": "^2.5.0",
 
-		"mysql2": "^1.2.0",
+		"mysql": "^2.13.0",
 
 		"morgan": "~1.8.1",
 		"normalize-port": "^1.0.0",
