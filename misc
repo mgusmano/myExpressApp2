@@ -1,10 +1,34 @@
 mongo "mongodb://cluster0-shard-00-00-gxxh8.mongodb.net:27017,cluster0-shard-00-01-gxxh8.mongodb.net:27017,cluster0-shard-00-02-gxxh8.mongodb.net:27017/test?replicaSet=Cluster0-shard-0" --authenticationDatabase admin --ssl --username mgusmano --password Gusheandy1
 
+mongo-cli 
+
 use bookAPI
 show dbs
 show collections
 db.books.find()
 db.getCollectionInfos()
 db.dropDatabase()
+
+
+this project is connect to github repo
+mjg-expressapp graps repo as it changes
+
+http://mjg-expressapp.azurewebsites.net/users
+
+deployment options
+log logStream
+advanced tools
+
+https://portal.azure.com/#resource/subscriptions/8bf1e3a0-90fe-4095-8fc6-8851531c357a/resourceGroups/myExpressAppGroup/providers/Microsoft.Web/sites/mjg-ExpressApp/DeploymentSource
+https://portal.azure.com/#resource/subscriptions/8bf1e3a0-90fe-4095-8fc6-8851531c357a/resourceGroups/myExpressAppGroup/providers/Microsoft.Web/sites/mjg-ExpressApp/logStream
+https://mjg-expressapp.scm.azurewebsites.net/DebugConsole
+
+
+
+    "json-server": "^0.9.5",
+    "lodash": "^4.17.4",
+    "lodash-id": "^0.14.0",
+    "lowdb": "^0.16.2",
+
 
 

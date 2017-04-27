@@ -7,15 +7,19 @@ app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var mongoose = require('mongoose')
-//var db = mongoose.connect('mongodb://localhost/bookAPI')
-var db = mongoose.connect('mongodb://mgusmano:Gusheandy1@cluster0-shard-00-00-gxxh8.mongodb.net:27017,cluster0-shard-00-01-gxxh8.mongodb.net:27017,cluster0-shard-00-02-gxxh8.mongodb.net:27017/bookAPI?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin')
-mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
-mongoose.connection.on('connected', function () {console.log('Mongoose connection open');});
+// var data = require('./utils/mongoose/data.js')
+// var Book = require('./models/mongoose/book');
+// var bookApi = require('./api/mongoose/book')(Book)
 
-app.use('/Books', require('./routes/book/bookRoutes'))
-app.use('/SortPlans', require('./routes/sortplan/sortplanRoutes'))
-app.use('/Users', require('./routes/user/userRoutes'))
+var data = require('./utils/sequelize/data.js')
+var Book = require('./models/sequelize').Book;
+var bookApi = require('./api/sequelize/book')(Book)
+
+data.reset()
+
+app.use('/Books', require('./routes/bookRoutes')(bookApi))
+app.use('/SortPlans', require('./routes/sortplanRoutes'))
+app.use('/Users', require('./routes/userRoutes'))
 
 app.get('/notes', function(req, res) {
 	res.json({notes: "This is your notebook. Edit this to start saving your notes!"})
