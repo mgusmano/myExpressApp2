@@ -1,8 +1,6 @@
 {
 	"name": "myexpressapp",
 	"version": "0.0.1",
-	"main": "./bin/www",
-	"module": "./bin/www",
 	"private": true,
 	"scripts": {
 		"start": "node ./server.js",
