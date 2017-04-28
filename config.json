@@ -1,7 +1,7 @@
 {
 	"database": {
 		"dialect": "sqlite",
-		"storage": ".//sqlite.db",
+		"storage": ".//db//sqlite.db",
 		"logging": false,
 		"dialectOptions": {
 			"socketPath": "/tmp/mysql.sock",
