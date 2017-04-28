@@ -15,7 +15,7 @@ var data = require('./utils/sequelize/data.js')
 var Book = require('./models/sequelize').Book;
 var bookApi = require('./api/sequelize/book')(Book)
 
-data.reset()
+//data.reset()
 
 // var sqlite3 = require('sqlite3').verbose();
 // var db = new sqlite3.Database('./sqlite.db');

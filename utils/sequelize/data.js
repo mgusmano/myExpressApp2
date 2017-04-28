@@ -1,4 +1,3 @@
-
 var models = require("../../models/sequelize");
 var sequelize = models.sequelize;
 console.log('using sequelize')
