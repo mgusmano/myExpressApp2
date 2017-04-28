@@ -7,7 +7,6 @@ app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 // var data = require('./utils/mongoose/data.js')
 // var Book = require('./models/mongoose/book');
 // var bookApi = require('./api/mongoose/book')(Book)
