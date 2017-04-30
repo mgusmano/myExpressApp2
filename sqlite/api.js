@@ -1,9 +1,10 @@
+//https://github.com/mapbox/node-sqlite3/wiki/API
 module.exports = function(model, util) {
 	//var util = require('./util')
-	var table = model.table()
-	var ddl = model.ddl()
-	var db = model.db()
-
+	var db = model.db
+	var table = model.table
+	var ddl = model.ddl
+	
 	var Model = {
 		droptable: function(res, callback) {
 			rootThis = this; var callee = arguments.callee.name
@@ -11,6 +12,7 @@ module.exports = function(model, util) {
 			db.run(sql, function(err) { util.completed(this, err, res, callee, callback) });
 		},
 		createtable: function(res, callback) {
+			console.log(ddl)
 			rootThis = this; var callee = arguments.callee.name
 			var sql = ddl.replace(/(\r\n|\n|\r)/gm,"");console.log(ddl)
 			db.get(sql, function(err) { util.completed(this, err, res, rootThis, callback) });
@@ -31,15 +33,19 @@ db.serialize(function() {
 				var f = util.getInsertFields(body)
 				var v = util.getValueFields(body)
 				var sql = `INSERT INTO ${table}(${f}) VALUES(${v});`
+				console.log(sql)
 				db.run(sql, function(err) {
 					//need to fix async issues
 					if (err) {
-						res.status(500).send({
-							result: 'error',
-							action: callee,
-							sql: this.sql,
-							message: err.toString()
-						})
+						if (error == 'no') {
+							res.status(500).send({
+								result: 'error',
+								action: callee,
+								sql: this.sql,
+								message: err.toString()
+							})
+						}
+						error = 'yes'
 					}
 					else {
 						console.log(this.sql + ' (id:' + this.lastID + ')')
@@ -48,9 +54,6 @@ db.serialize(function() {
 			})
 
 });
-
-
-
 			callback({message: 'generatedata'})
 		},
 		deleteall: function(res, callback) {

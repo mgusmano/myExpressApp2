@@ -9,9 +9,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var util = require('./sqlite/util')
 var db = util.initDB()
 
-var bookModel = require('./sqlite/models/book')(db, util)
-var bookApi = require('./sqlite/api')(bookModel, util)
-app.use('/Books', require('./routes')(bookApi))
+var officeModel = require('./sqlite/models/office')(db, util)
+var officeApi = require('./sqlite/api')(officeModel, util)
+app.use('/Offices', require('./routes')(officeApi))
+
+var organizationModel = require('./sqlite/models/organization')(db, util)
+var organizationApi = require('./sqlite/api')(organizationModel, util)
+app.use('/Organizations', require('./routes')(organizationApi))
 
 var personModel = require('./sqlite/models/person')(db, util)
 var personApi = require('./sqlite/api')(personModel, util)

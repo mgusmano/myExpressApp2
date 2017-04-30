@@ -38,8 +38,15 @@ module.exports = {
 	},
 	getValueFields: function(data){
 		return fields = Object.keys(data).map(function(k){
-			var sep = ''; if (typeof data[k] == "string") {sep = '"'}
-			return sep + data[k] + sep
+			//var varType = typeof data[k]
+			var val = data[k]
+			//console.log(val)
+			if(typeof data[k] == "object") {val = JSON.stringify(data[k])}
+			var val2 = val.replace(/"/g, "'")
+			//console.log(val2)
+			var sep = ''; if (typeof val2) {sep = '"'}
+//			var sep = ''; if (varType == "string") {sep = '"'}
+			return sep + val2 + sep
 		}).join(",");
 	},
 
