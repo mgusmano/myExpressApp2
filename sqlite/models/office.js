@@ -1,6 +1,14 @@
 module.exports = function(db, util) {
 	var faker = require('faker');
 	const uuidV4 = require('uuid/v4');
+	var express = require('express');
+	var router = express.Router()
+
+		router.route('/:Id/Actions')
+		.get(function(req,res) {
+				res.json({message: 'Actions'}) 
+		})
+		
 	var Model = {
 		db: db,
 		record: 'Office',
@@ -30,7 +38,14 @@ module.exports = function(db, util) {
 				country: faker.address.country(),
 				location: l
 			}
+		},
+		route: function(router) {
+			router.route('/:Id/Actions')
+				.get(function(req,res) {
+						res.json({message: 'Actions'}) 
+				})
 		}
+
 	};
 	return Model
 }

@@ -1,6 +1,14 @@
-module.exports = function(db, util) {
+module.exports = function(db, util, app) {
 	var faker = require('faker');
 	const uuidV4 = require('uuid/v4');
+	var express = require('express');
+	var router = express.Router()
+
+	// router.route('/:Id/Actions')
+	// 	.get(function(req,res) {
+	// 			res.json({message: 'Actions'}) 
+	// 	})
+
 	var Model = {
 		db: db,
 		record: 'Action',
@@ -21,7 +29,14 @@ module.exports = function(db, util) {
 				type: 'skype',
 				subject: 'subject'
 			}
-		}
+		},
+		// route: function(router) {
+		// 	router.route('/:Id/Actions')
+		// 		.get(function(req,res) {
+		// 				res.json({message: 'Actions'}) 
+		// 		})
+		// }
+
 	};
 	return Model
 }

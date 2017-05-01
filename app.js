@@ -9,21 +9,24 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var util = require('./sqlite/util')
 var db = util.initDB()
 
+//util.reset()
+
+
 var officeModel = require('./sqlite/models/office')(db, util)
 var officeApi = require('./sqlite/api')(officeModel, util)
-app.use('/Offices', require('./routes')(officeApi))
+app.use('/Offices', require('./routes')(officeApi,officeModel))
 
 var organizationModel = require('./sqlite/models/organization')(db, util)
 var organizationApi = require('./sqlite/api')(organizationModel, util)
-app.use('/Organizations', require('./routes')(organizationApi))
+app.use('/Organizations', require('./routes')(organizationApi,organizationModel))
 
-var personModel = require('./sqlite/models/person')(db, util)
+var personModel = require('./sqlite/models/person')(db, util, app)
 var personApi = require('./sqlite/api')(personModel, util)
-app.use('/People', require('./routes')(personApi))
+app.use('/People', require('./routes')(personApi,personModel))
 
-var actionModel = require('./sqlite/models/action')(db, util)
+var actionModel = require('./sqlite/models/action')(db, util, app)
 var actionApi = require('./sqlite/api')(actionModel, util)
-app.use('/Actions', require('./routes')(actionApi))
+app.use('/Actions', require('./routes')(actionApi,actionModel))
 
 
 // // catch 404 and forward to error handler

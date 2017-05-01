@@ -20,6 +20,7 @@ db.serialize(function() {
 		var f = util.getInsertFields(office)
 		var v = util.getValueFields(office)
 		var sql = `INSERT INTO ${table} (${f}) VALUES(${v});`
+		console.log(sql)
 		db.run(sql, function(err) { if (err != null) { console.log(err);console.log(this.sql); } });
 	}
 
@@ -38,9 +39,6 @@ db.serialize(function() {
 		delete person.gender; 
 		delete person.picture_gender;
 		delete person.picture_index;
-		delete person.birthday;
-		delete person.started;
-		delete person.ended;
 
 		var table = 'People'
 		var f = util.getInsertFields(person)
@@ -50,6 +48,7 @@ db.serialize(function() {
 
 		for (let action of actions) {
 			action.person_id = person.id
+			//action.recipient_id = person.id
 			delete action.created;
 
 			var table = 'Actions'
@@ -113,6 +112,7 @@ db.serialize(function() {
 			else { 
 				var person = pick(people).id
 				var sql = `UPDATE Actions SET recipient_id = '${person}' WHERE id = '${row.id}';`
+				//var sql = `UPDATE Actions SET person_id = '${person}' WHERE id = '${row.id}';`
 				db.run(sql, function(err) {if (err != null) { console.log(err);console.log(this.sql); } });
 			}
 		});

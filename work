@@ -1,9 +1,27 @@
-
-CREATE TABLE Organizations (
+CREATE TABLE People (
 	id UUID NOT NULL PRIMARY KEY, 
-	name VARCHAR(255) NOT NULL, 
-	created DATETIME NOT NULL, 
-	updated DATETIME NOT NULL, 
-	manager_id UUID, 
-	UNIQUE (name)
+	email VARCHAR(255) NOT NULL, 
+	username VARCHAR(255) NOT NULL, 
+	password VARCHAR(255) NOT NULL, 
+	firstname VARCHAR(255) NOT NULL, 
+	lastname VARCHAR(255) NOT NULL, 
+	title VARCHAR(255), 
+	phone VARCHAR(255), 
+	extension VARCHAR(255), 
+	skype VARCHAR(255), 
+	linkedin VARCHAR(255), 
+	picture VARCHAR(255), 
+	birthday DATE NOT NULL, 
+	started DATE, 
+	ended DATE, 
+	office_id UUID 
+		REFERENCES Offices (id) 
+		ON DELETE SET NULL 
+		ON UPDATE CASCADE, 
+	organization_id UUID 
+		REFERENCES Organizations (id) 
+		ON DELETE SET NULL 
+		ON UPDATE CASCADE, 
+	UNIQUE (email), 
+	UNIQUE (username)
 )

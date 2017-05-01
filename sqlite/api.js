@@ -17,50 +17,12 @@ module.exports = function(model, util) {
 			var sql = ddl.replace(/(\r\n|\n|\r)/gm,"");console.log(ddl)
 			db.get(sql, function(err) { util.completed(this, err, res, rootThis, callback) });
 		},
-		generatedata: function(res, callback) {
-			var rootThis = this; var callee = arguments.callee.name
-			var _ = require("lodash");
-			var num = 100;
-
-var error = 'no'
-
-db.serialize(function() {
-
-			var rows = _.times(num, function(n) {
-				//https://www.npmjs.com/package/faker
-				//http://marak.github.io/faker.js/
-				var body = model.generatebody()
-				var f = util.getInsertFields(body)
-				var v = util.getValueFields(body)
-				var sql = `INSERT INTO ${table}(${f}) VALUES(${v});`
-				console.log(sql)
-				db.run(sql, function(err) {
-					//need to fix async issues
-					if (err) {
-						if (error == 'no') {
-							res.status(500).send({
-								result: 'error',
-								action: callee,
-								sql: this.sql,
-								message: err.toString()
-							})
-						}
-						error = 'yes'
-					}
-					else {
-						console.log(this.sql + ' (id:' + this.lastID + ')')
-					}
-				});
-			})
-
-});
-			callback({message: 'generatedata'})
-		},
 		deleteall: function(res, callback) {
 			var rootThis = this; var callee = arguments.callee.name
 			var sql = `DELETE FROM ${table};`;console.log(sql)
 			db.get(sql, function(err) { util.completed(this, err, res, callee, callback) });
 		},
+		
 		get: function(res, callback) {
 			var rootThis = this; var callee = arguments.callee.name
 			var sql = `SELECT * FROM ${table}`;console.log(sql)
@@ -107,6 +69,49 @@ db.serialize(function() {
 				else { util.getOne(res, db, id, callback, table) }
 			});
 		},
+		
+		generatedata: function(res, callback) {
+			var rootThis = this; var callee = arguments.callee.name
+			var _ = require("lodash");
+			var num = 100;
+
+var error = 'no'
+
+db.serialize(function() {
+
+			var rows = _.times(num, function(n) {
+				//https://www.npmjs.com/package/faker
+				//http://marak.github.io/faker.js/
+				var body = model.generatebody()
+				var f = util.getInsertFields(body)
+				var v = util.getValueFields(body)
+				var sql = `INSERT INTO ${table}(${f}) VALUES(${v});`
+				console.log(sql)
+				db.run(sql, function(err) {
+					//need to fix async issues
+					if (err) {
+						if (error == 'no') {
+							res.status(500).send({
+								result: 'error',
+								action: callee,
+								sql: this.sql,
+								message: err.toString()
+							})
+						}
+						error = 'yes'
+					}
+					else {
+						console.log(this.sql + ' (id:' + this.lastID + ')')
+					}
+				});
+			})
+
+});
+			callback({message: 'generatedata'})
+		},
+
+
+
 
 
 // db.serialize(function() {

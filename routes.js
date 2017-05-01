@@ -1,6 +1,15 @@
-module.exports = function(model) {
+module.exports = function(model,m) {
 	var express = require('express');
 	var router = express.Router()
+
+//	m.route(router)
+
+	// router.route('/:Id/Actions')
+	// 	.get(function(req,res) {
+	// 			res.json({message: 'Actions'}) 
+	// 	})
+
+
 	router.route('/')
 		.get(function(req,res) {
 			model.get(res, function(response) {
@@ -17,20 +26,6 @@ module.exports = function(model) {
 	router.route('/Model/CreateTable').get(function(req,res) { model.createtable(res, function(response) {res.json(response) }) })
 	router.route('/Model/GenerateData').get(function(req,res) { model.generatedata(res, function(response) { res.json(response) }) })
 	router.route('/Model/DeleteAll').get(function(req,res) { model.deleteall(res, function(response) { res.json(response) }) })
-
-	// router.route('/Init')
-	// 	.get(function(req,res) {
-	// 		model.init(res, function(response) {
-	// 			res.json(response) 
-	// 		})
-	// 	})
-
-	// router.route('/DeleteAll')
-	// 	.get(function(req,res) {
-	// 		model.deleteall(res, function(message) {
-	// 			res.json(message) 
-	// 		})
-	// 	})
 
 	router.use('/:Id', function(req, res, next) {
 		model.getById(res, req.params.Id, function(Instance) {
