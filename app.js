@@ -11,14 +11,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 var which = 'sequelize'
 //var which = 'sqlite'
 
-// var util
-// if (which == 'sequelize') {
-// 	util = require('./sequelize/util')
-// }
-// else {
-// 	util = require('./sqlite/util')
-// }
-
 var util = require('./' + which + '/util')
 	
 var db = util.initDB()
@@ -37,19 +29,16 @@ app.use('/People', require('./routes')(personApi))
 var actionApi = require('./' + which + '/api')(models.Action, util)
 app.use('/Actions', require('./routes')(actionApi))
 
+//if (which == 'sqlite') {
+	var express = require('express');
+	var router = express.Router()
+	var dbutil = require('./' + which + '/dbutil')
+	require('./' + which + '/routes/peopleJSON')(db,app,router,dbutil,models)
+//}
+
 module.exports = app;
-
-
-
-
 
 
 // var data = require('./mongoose/utils/data.js')
 // var Book = require('./mongoose/models/book');
 // var bookApi = require('./mongoose/api/book')(Book)
-
-
-
-
-
-

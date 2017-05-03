@@ -5,7 +5,7 @@ module.exports = function(db, app) {
 	var router = express.Router()
 
 	var dbutil = require('../dbutil');
-	app.get('/PeopleJSON/:Id', function (req, res) {
+	app.get('/PeopleJSON2/:Id', function (req, res) {
 		var id = req.params.Id
 		sqlPerson = `SELECT * FROM People where id = '${id}';`
 		sqlOffice = `SELECT off.* FROM Offices off, People ppl where ppl.id = '${id}' and ppl.office_id = off.id;`
