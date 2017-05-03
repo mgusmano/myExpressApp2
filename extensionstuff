@@ -1,0 +1,39 @@
+
+db.loadExtension('./sqlite/extensions/json1/json1.dylib', function(err) {
+	console.log(err)
+//json_object(a.type)
+
+var sql = `
+SELECT ppl.firstname
+FROM People ppl
+WHERE plp.id = 'a6987240-610f-4dc6-b0a7-3d53d47591ad'
+;
+`
+
+
+
+// var sql = `SELECT p.firstname,json_each(a) as y
+// FROM people p, actions a
+// WHERE p.id = 'a6987240-610f-4dc6-b0a7-3d53d47591ad'
+// AND p.id = a.person_id
+// ;
+//`
+	let getPeople3 = db.get(sql, function(err, row) 
+		{if (err) {console.log(err.toString())} else {console.log(row)} }
+	)
+
+	// let getPeople = db.get(`select json_array(select * from Offices) vals;`, function(err, row) 
+	// 	{if (err) {console.log(err.toString())} else {console.log(row)} }
+	// )
+
+	// let getPeople2 = db.get(`SELECT half(count(*)) FROM People;`, function(err, row) 
+	// 	{if (err) {console.log(err.toString())} else {console.log(row)} }
+	// )
+})
+
+// db.loadExtension('./sqlite/db/half.sqlext', function(err) {
+// 	console.log(err)
+// 	let getPeople = db.get(`SELECT half(count(*)) FROM People;`, function(err, row) 
+// 		{if (err) {console.log(err.toString())} else {console.log(row)} }
+// 	)
+// })

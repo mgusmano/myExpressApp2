@@ -1,0 +1,8 @@
+
+-arch i386 or -arch x86_64 
+
+gcc -g -fPIC -dynamiclib json1.c -o json1.dylib
+
+gcc -bundle -fPIC -Isqlite3 -o json1.sqlext json1.c
+
+gcc -bundle -fPIC -Isqlite3 -o half.sqlext half.c

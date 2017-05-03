@@ -1,19 +1,47 @@
 //https://github.com/mapbox/node-sqlite3/wiki/API
-var path = require("path");
+var path = require("path")
+var Sqlite3 = require('sqlite3')
 var fs = require('fs')
-var db
+//var db
 
 module.exports = {
 
 	initDB: function() {
 		var config = require(path.join(__dirname, './', 'config.json')).database;
-		var sqlite3 = require('sqlite3').verbose();
-		console.log('using ' + config.storage)
+		var sqlite3 = Sqlite3.verbose();
 		db = new sqlite3.Database(config.storage)
+		console.log('using ' + config.storage)
 		return db
 	},
 
-	reset: function() {
+	initModels: function(db,app) {
+		var fs = require("fs");
+		var models = {}
+		var modelPath = path.join(__dirname, './', 'models')
+		fs.readdirSync(modelPath)
+			.forEach(function(file) {
+				//console.log(file)
+				var model = file.substring(0, file.length-3);
+				model = model.charAt(0).toUpperCase() + model.slice(1);
+				//var model = sequelize.import(path.join(modelPath, file));
+				totalModelPath = modelPath + '/' + model
+				var modelFile = require(totalModelPath)
+				models[model] = modelFile(db,app);
+				//models[model] = modelFile;
+			});
+		// Object.keys(models).forEach(function(modelName) {
+		// 	if ("associate" in models[modelName]) {
+		// 		models[modelName].associate(models);
+		// 	}
+		// });
+//		models.sequelize = sequelize;
+			models.db = db
+		return models
+	},
+
+
+
+	reset: function(db) {
 		console.info('Populating database with example data...');
 		var rootThis = this
 		var offices = JSON.parse(fs.readFileSync(`./data/Offices.json`, 'utf8'));

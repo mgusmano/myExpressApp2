@@ -1,34 +1,26 @@
-module.exports = function(model,m) {
+module.exports = function(api) {
 	var express = require('express');
 	var router = express.Router()
 
-//	m.route(router)
-
-	// router.route('/:Id/Actions')
-	// 	.get(function(req,res) {
-	// 			res.json({message: 'Actions'}) 
-	// 	})
-
-
 	router.route('/')
 		.get(function(req,res) {
-			model.get(res, function(response) {
+			api.get(res, function(response) {
 				res.json(response) 
 			})
 		})
 		.post(function(req,res) {
-			model.post(res, req.body, function(Instance){
+			api.post(res, req.body, function(Instance){
 				res.status(201).send(Instance)
 		})
 	})
 
-	router.route('/Model/DropTable').get(function(req,res) { model.droptable(res, function(response) { res.json(response) }) })
-	router.route('/Model/CreateTable').get(function(req,res) { model.createtable(res, function(response) {res.json(response) }) })
-	router.route('/Model/GenerateData').get(function(req,res) { model.generatedata(res, function(response) { res.json(response) }) })
-	router.route('/Model/DeleteAll').get(function(req,res) { model.deleteall(res, function(response) { res.json(response) }) })
+	router.route('/Model/DropTable').get(function(req,res) { api.droptable(res, function(response) { res.json(response) }) })
+	router.route('/Model/CreateTable').get(function(req,res) { api.createtable(res, function(response) {res.json(response) }) })
+	router.route('/Model/GenerateData').get(function(req,res) { api.generatedata(res, function(response) { res.json(response) }) })
+	router.route('/Model/DeleteAll').get(function(req,res) { api.deleteall(res, function(response) { res.json(response) }) })
 
 	router.use('/:Id', function(req, res, next) {
-		model.getById(res, req.params.Id, function(Instance) {
+		api.getById(res, req.params.Id, function(Instance) {
 			req.id = req.params.Id
 			req.Instance = Instance
 			req.InstanceData = Instance.data
@@ -44,7 +36,7 @@ module.exports = function(model,m) {
 			res.json(req.Instance) 
 		})
 		.delete(function(req,res) {
-			model.delete(res, req.id, function(response){
+			api.delete(res, req.id, function(response){
 				res.json(response)
 			})
 		})
@@ -63,7 +55,7 @@ module.exports = function(model,m) {
 		for (var p in req.body) {
 			newData[p] = req.body[p]
 		}
-		model.putpatch(res, req.id, newData, function(response){
+		api.putpatch(res, req.id, newData, function(response){
 			res.json(response)
 		})
 	}

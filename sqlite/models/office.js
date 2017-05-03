@@ -1,4 +1,4 @@
-module.exports = function(db, util) {
+module.exports = function(db) {
 	var faker = require('faker');
 	const uuidV4 = require('uuid/v4');
 	var express = require('express');
