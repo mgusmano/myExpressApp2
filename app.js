@@ -30,18 +30,11 @@ app.use('/People', require('./routes')(personApi))
 var actionApi = require('./' + which + '/api')(models.Action, util)
 app.use('/Actions', require('./routes')(actionApi))
 
-//if (which == 'sqlite') {
-	var express = require('express');
-	var router = express.Router()
-	var dbutil = require('./' + which + '/dbutil')
-	require('./' + which + '/routes/peopleJSON')(db,app,router,dbutil,models)
-
-	require('./' + which + '/routes/APNs')(db,app,router,dbutil,models)
-
-
-//}
-
-
+var express = require('express');
+var router = express.Router()
+var dbutil = require('./' + which + '/dbutil')
+require('./' + which + '/routes/peopleJSON')(db,app,router,dbutil,models)
+require('./' + which + '/routes/APNs')(db,app,router,dbutil,models)
 
 //??
 // catch 404 and forward to error handler
@@ -60,10 +53,6 @@ app.use(function(err, req, res, next) {
     error: (app.get('env') === 'development') ? err : {}
   });
 });
-
-
-
-
 
 
 module.exports = app;
