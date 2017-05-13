@@ -18,7 +18,15 @@ module.exports = {
 	initDB: function() {
 		//var env = process.env.NODE_ENV || "development";
 		var config = require(path.join(__dirname, './', 'config.json')).database;
-		var sequelize = new Sequelize(config.database, config.username, config.password, config);
+		//var sequelize = new Sequelize(config.database, config.username, config.password, config);
+		var sequelize = new Sequelize(config.database, config.username, config.password, config, {
+//				logging: console.log
+				logging: function (str) {
+					console.log('mjg: ' + str)
+						// do your own logging
+				}
+		});
+
 		console.log('using ' + 'sequelize')
 		console.log('using ' + config.dialect + ' dialect')
 		return sequelize

@@ -1,4 +1,25 @@
-module.exports = function(Sequelize, app, router, dbutil, models) {
+module.exports = function(sequelize, app, router, dbutil, models) {
+
+
+
+
+
+
+	app.get('/PeopleSQL/:Id', function (req, res) {
+		sequelize.query(`select * from People where id = '${req.params.Id}'`, { model: models.Person }).then(
+			function(collection){
+				res.json(collection)
+			})
+	}),
+
+	app.get('/PeopleSQL2/:Id', function (req, res) {
+		sequelize.query(`select * from People where id = '${req.params.Id}'`, { type: sequelize.QueryTypes.SELECT}).then(
+			function(collection){
+				res.json(collection)
+			})
+	}),
+
+
 	app.get('/PeopleJSON/:Id', function (req, res) {
 		return models.Person.scope('nested').findOne({where: {id: req.params.Id}})
 		.then(collection => res.json(collection),err => res.status(500).send(err))

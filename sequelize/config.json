@@ -28,7 +28,7 @@
     "database": {
         "dialect": "sqlite",
         "storage": ".//data.db",
-        "logging": false,
+        "logging": true,
         "define": {
             "createdAt": "created",
             "updatedAt": "updated",
