@@ -22,6 +22,11 @@ module.exports = function(sequelize, DataTypes) {
 					type: DataTypes.STRING,
 					allowNull: true,
 					searchable: true
+			},
+			apnstoken: {
+					type: DataTypes.STRING,
+					allowNull: true,
+					searchable: true
 			}
 		}
 	);
