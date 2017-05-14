@@ -4,7 +4,7 @@ module.exports = function(model) {
 			model.findAll({}).then(collection => {callback(collection)}, 
 			function(err) {res.status(500).send(err)})
 		},
-		post: function(body, callback) {
+		post: function(res, body, callback) {
 			model.create(body).then(instance => {callback(instance)}, 
 			function(err) {res.status(500).send(err)})
 		},
