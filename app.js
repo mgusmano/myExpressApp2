@@ -16,7 +16,7 @@ var util = require('./' + which + '/util')
 	
 var db = util.initDB()
 var models = util.initModels(db, app)
-//util.reset(db, models)
+util.reset(db, models)
 
 var officeApi = require('./' + which + '/api')(models.Office, util)
 app.use('/Offices', require('./routes')(officeApi))
@@ -29,6 +29,9 @@ app.use('/People', require('./routes')(personApi))
 
 var actionApi = require('./' + which + '/api')(models.Action, util)
 app.use('/Actions', require('./routes')(actionApi))
+
+var guestApi = require('./' + which + '/api')(models.Guest, util)
+app.use('/Guests', require('./routes')(guestApi))
 
 var express = require('express');
 var router = express.Router()

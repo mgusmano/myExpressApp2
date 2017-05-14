@@ -59,6 +59,7 @@ module.exports = {
 		return sequelize.transaction(function(t) {
 				return sequelize.sync({ force: true, transaction: t }).then(function () {
 						return Promise.all([
+								models.Guest.destroy({ truncate: true, transaction: t }),
 								models.Action.destroy({ truncate: true, transaction: t }),
 								models.Office.destroy({ truncate: true, transaction: t }),
 								models.Organization.destroy({ truncate: true, transaction: t }),
@@ -66,6 +67,7 @@ module.exports = {
 						]);
 				}).then(function() {
 						return Promise.all([
+								models.Guest.bulkCreate(require('../data/Guests.json'), { transaction: t }),
 								models.Office.bulkCreate(require('../data/Offices.json'), { transaction: t }),
 								models.Organization.bulkCreate(require('../data/Organizations.json'), { transaction: t }),
 								Promise.map(require('../data/People.json'), function(data) {
